@@ -1,0 +1,31 @@
+<div class="egreso">
+  <h2 class="egreso_titulo">Egresos</h2>
+
+  <div *ngIf="servicioEgreso.mensajeVacio" class="mensaje-alerta">
+    <h1>Todavia no has agregado ningun egreso</h1>
+  </div>
+
+  <div
+    *ngFor="let nuevoEgreso of egreso"
+    class="elemento limpiarEstilos"
+    id="contenedor-egresos"
+  >
+    <div class="elemento_descripcion">{{ nuevoEgreso.descripcion }}</div>
+    <div class="right limpiarEstilos">
+      <div class="elemento_valor">
+        - {{ nuevoEgreso.valor | currency : "ARS " : "$" : "1.2-2" }}
+      </div>
+      <div class="elemento_porcentaje">
+        {{ calcularPorcentaje(nuevoEgreso) | percent }}
+      </div>
+      <div class="elemento_eliminar">
+        <button class="elemento_eliminar--btn">
+          <i
+            class="ion-ios-close-outline"
+            (click)="eliminarEgreso(nuevoEgreso)"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
